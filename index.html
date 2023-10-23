@@ -25,7 +25,7 @@
         collection-view-params=""
       >
         <template slot="item">
-          <a href="#/{{url:Category.name}}">{{Category.name}}</a>
+          <a href="#/{{url(Category.name)}}">{{Category.name}}</a>
         </template>
         <div slot="viewport"></div>
         <button slot="previous-page">&lt;</button>
@@ -34,7 +34,7 @@
 
       <app-router class="product-container centered-column-container">
         <template slot="page" route-path="/:categoryName">
-          <div class="category-title">Category: {{capitalize:categoryName}}</div>
+          <div class="category-title">Category: {{capitalize(categoryName)}}</div>
 
           <collection-browser
             class="product-browser"
@@ -42,11 +42,11 @@
             collection-fields="name,brand,image"
             collection-view="categoryView"
             collection-page-size="1"
-            collection-view-params="categoryName={{capitalize:categoryName}}"
+            collection-view-params="categoryName={{capitalize(categoryName)}}"
           >
             <template slot="item">
               <div class="product-image-container">
-                <img class="product-image" src="{{Product.image}}" alt="{{Product.name}}" />
+                <img class="product-image" src="{{fallback(Product.image, '/saasufy-demo/image-not-found.png')}}" alt="{{Product.name}}" />
               </div>
               <div>Name: {{Product.name}}, Brand: {{Product.brand}}</div>
             </template>
