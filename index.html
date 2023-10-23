@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saasufy demo</title>
     <link rel="icon" type="image/png" href="https://www.saasufy.com/favicon.ico">
-    <link rel="stylesheet" href="/saasufy-demo/demo-styles.css">
+    <link rel="stylesheet" href="/product-browser-demo/demo-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <script src="https://www.saasufy.com/node_modules/saasufy-components/socket.js" type="module" defer></script>
     <script src="https://www.saasufy.com/node_modules/saasufy-components/app-router.js" type="module" defer></script>
@@ -46,7 +46,7 @@
           >
             <template slot="item">
               <div class="product-image-container">
-                <img class="product-image" src="{{fallback(Product.image, '/saasufy-demo/image-not-found.png')}}" alt="{{Product.name}}" />
+                <img class="product-image" src="{{fallback(Product.image, '/product-browser-demo/image-not-found.png')}}" alt="{{Product.name}}" />
               </div>
               <div>Name: {{Product.name}}, Brand: {{Product.brand}}</div>
             </template>
