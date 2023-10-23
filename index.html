@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"></meta>
+    <meta name="description" content="Saasufy demo"></meta>
+    <meta name="keywords" content="Saasufy, No-code, Platform, SaaS, Data store, components, Web Components, HTMLElement"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saasufy demo</title>
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    <link rel="stylesheet" href="/demo-styles.css">
+    <script src="/node_modules/saasufy-components/socket.js" type="module" defer></script>
+    <script src="/node_modules/saasufy-components/app-router.js" type="module" defer></script>
+    <script src="/node_modules/saasufy-components/model-text.js" type="module" defer></script>
+    <script src="/node_modules/saasufy-components/collection-browser.js" type="module" defer></script>
+  </head>
+  <body>
+    <socket-provider url="wss://saasufy.com/sid8001/socketcluster/" class="main-container">
+      <collection-browser
+        class="top-nav centered-row-container"
+        collection-type="Category"
+        collection-fields="name"
+        collection-view="defaultView"
+        collection-page-size="3"
+        collection-view-params=""
+      >
+        <template slot="item">
+          <a href="#/{{url:Category.name}}">{{Category.name}}</a>
+        </template>
+        <div slot="viewport"></div>
+        <button slot="previous-page">&lt;</button>
+        <button slot="next-page">&gt;</button>
+      </collection-browser>
+
+      <app-router class="product-container centered-column-container">
+        <template slot="page" route-path="/:categoryName">
+          <div class="category-title">Category: {{capitalize:categoryName}}</div>
+
+          <collection-browser
+            class="product-browser"
+            collection-type="Product"
+            collection-fields="name,brand,image"
+            collection-view="categoryView"
+            collection-page-size="1"
+            collection-view-params="categoryName={{capitalize:categoryName}}"
+          >
+            <template slot="item">
+              <div class="product-image-container">
+                <img class="product-image" src="{{Product.image}}" alt="{{Product.name}}" />
+              </div>
+              <div>Name: {{Product.name}}, Brand: {{Product.brand}}</div>
+            </template>
+
+            <div slot="viewport" class="product-viewport"></div>
+            <button slot="previous-page">&lt;</button>
+            <span slot="page-number"></span>
+            <button slot="next-page">&gt;</button>
+          </collection-browser>
+
+        </template>
+        <div slot="viewport" class="category-viewport"></div>
+      </app-router>
+    </socket-provider>
+  </body>
+</html>
