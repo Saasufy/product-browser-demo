@@ -6,8 +6,8 @@
     <meta name="keywords" content="Saasufy, No-code, Platform, SaaS, Data store, components, Web Components, HTMLElement"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saasufy demo</title>
-    <link rel="icon" type="image/png" href="/favicon.ico">
-    <link rel="stylesheet" href="/demo-styles.css">
+    <link rel="icon" type="image/png" href="./favicon.ico">
+    <link rel="stylesheet" href="./demo-styles.css">
     <script src="/node_modules/saasufy-components/socket.js" type="module" defer></script>
     <script src="/node_modules/saasufy-components/app-router.js" type="module" defer></script>
     <script src="/node_modules/saasufy-components/model-text.js" type="module" defer></script>
@@ -58,7 +58,7 @@
             >
               <template slot="item">
                 <div class="product-image-container">
-                  <img class="product-image" src="{{fallback(Product.image, '/img/image-not-found.png')}}" alt="{{Product.name}}" />
+                  <img class="product-image" src="{{fallback(Product.image, './img/image-not-found.png')}}" alt="{{Product.name}}" />
                 </div>
                 <div>Name: {{Product.name}}, Brand: {{Product.brand}}</div>
               </template>
