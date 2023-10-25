@@ -118,4 +118,5 @@ input[type=text],input[type=password],input[type=button],input[type=submit],inpu
 
 .url-input input {
   width: 100%;
+  box-sizing: border-box;
 }
