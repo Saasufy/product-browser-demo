@@ -6,60 +6,75 @@
     <meta name="keywords" content="Saasufy, No-code, Platform, SaaS, Data store, components, Web Components, HTMLElement"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saasufy demo</title>
-    <link rel="icon" type="image/png" href="https://www.saasufy.com/favicon.ico">
-    <link rel="stylesheet" href="/product-browser-demo/demo-styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <script src="https://www.saasufy.com/node_modules/saasufy-components/socket.js" type="module" defer></script>
-    <script src="https://www.saasufy.com/node_modules/saasufy-components/app-router.js" type="module" defer></script>
-    <script src="https://www.saasufy.com/node_modules/saasufy-components/model-text.js" type="module" defer></script>
-    <script src="https://www.saasufy.com/node_modules/saasufy-components/collection-browser.js" type="module" defer></script>
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    <link rel="stylesheet" href="/demo-styles.css">
+    <script src="/node_modules/saasufy-components/socket.js" type="module" defer></script>
+    <script src="/node_modules/saasufy-components/app-router.js" type="module" defer></script>
+    <script src="/node_modules/saasufy-components/model-text.js" type="module" defer></script>
+    <script src="/node_modules/saasufy-components/collection-browser.js" type="module" defer></script>
+    <script src="/node_modules/saasufy-components/model-viewer.js" type="module" defer></script>
+    <script src="/node_modules/saasufy-components/input-provider.js" type="module" defer></script>
   </head>
   <body>
-    <socket-provider url="wss://saasufy.com/sid8001/socketcluster/" class="main-container">
-      <collection-browser
-        class="top-nav centered-row-container"
-        collection-type="Category"
-        collection-fields="name"
-        collection-view="defaultView"
-        collection-page-size="3"
-        collection-view-params=""
-      >
-        <template slot="item">
-          <a href="#/{{url(Category.name)}}">{{Category.name}}</a>
-        </template>
-        <div slot="viewport"></div>
-        <button slot="previous-page">&lt;</button>
-        <button slot="next-page">&gt;</button>
-      </collection-browser>
+    <div class="main-container">
 
-      <app-router class="product-container centered-column-container">
-        <template slot="page" route-path="/:categoryName">
-          <div class="category-title">Category: {{capitalize(categoryName)}}</div>
+      <input-provider
+        class="url-input"
+        type="text"
+        consumers="socket-provider:url"
+        value="wss://saasufy.com/sid8001/socketcluster/"
+        placeholder="Saasufy Service URL"
+      ></input-provider>
 
-          <collection-browser
-            class="product-browser"
-            collection-type="Product"
-            collection-fields="name,brand,image"
-            collection-view="categoryView"
-            collection-page-size="1"
-            collection-view-params="categoryName={{capitalize(categoryName)}}"
-          >
-            <template slot="item">
-              <div class="product-image-container">
-                <img class="product-image" src="{{fallback(Product.image, '/product-browser-demo/image-not-found.png')}}" alt="{{Product.name}}" />
-              </div>
-              <div>Name: {{Product.name}}, Brand: {{Product.brand}}</div>
-            </template>
+      <socket-provider class="main-socket-container" url="wss://saasufy.com/sid8001/socketcluster/">
 
-            <div slot="viewport" class="product-viewport"></div>
-            <button slot="previous-page">&lt;</button>
-            <span slot="page-number"></span>
-            <button slot="next-page">&gt;</button>
-          </collection-browser>
+        <collection-browser
+          class="top-nav centered-row-container"
+          collection-type="Category"
+          collection-fields="name"
+          collection-view="defaultView"
+          collection-page-size="3"
+          collection-view-params=""
+        >
+          <template slot="item">
+            <a href="#/{{url(Category.name)}}">{{Category.name}}</a>
+          </template>
+          <div slot="viewport"></div>
+          <button slot="previous-page">&lt;</button>
+          <button slot="next-page">&gt;</button>
+        </collection-browser>
 
-        </template>
-        <div slot="viewport" class="category-viewport"></div>
-      </app-router>
-    </socket-provider>
+        <app-router class="product-container centered-column-container">
+          <template slot="page" route-path="/:categoryName">
+            <div class="category-title">Category: {{capitalize(categoryName)}}</div>
+
+            <collection-browser
+              class="product-browser"
+              collection-type="Product"
+              collection-fields="name,brand,image"
+              collection-view="categoryView"
+              collection-page-size="1"
+              collection-view-params="categoryName={{capitalize(categoryName)}}"
+            >
+              <template slot="item">
+                <div class="product-image-container">
+                  <img class="product-image" src="{{fallback(Product.image, '/img/image-not-found.png')}}" alt="{{Product.name}}" />
+                </div>
+                <div>Name: {{Product.name}}, Brand: {{Product.brand}}</div>
+              </template>
+
+              <div slot="viewport" class="product-viewport"></div>
+              <button slot="previous-page">&lt;</button>
+              <span slot="page-number"></span>
+              <button slot="next-page">&gt;</button>
+            </collection-browser>
+
+          </template>
+          <div slot="viewport" class="category-viewport"></div>
+        </app-router>
+
+      </socket-provider>
+
+    </div>
   </body>
 </html>
