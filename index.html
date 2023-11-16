@@ -13,7 +13,6 @@
     <script src="https://saasufy.com/node_modules/saasufy-components/app-router.js" type="module" defer></script>
     <script src="https://saasufy.com/node_modules/saasufy-components/model-text.js" type="module" defer></script>
     <script src="https://saasufy.com/node_modules/saasufy-components/collection-browser.js" type="module" defer></script>
-    <script src="https://saasufy.com/node_modules/saasufy-components/model-viewer.js" type="module" defer></script>
     <script src="https://saasufy.com/node_modules/saasufy-components/input-provider.js" type="module" defer></script>
   </head>
   <body>
@@ -64,10 +63,13 @@
                 <div>Name: {{Product.name}}, Brand: {{Product.brand}}</div>
               </template>
 
+              <template slot="loader">
+                <div class="loading-spinner-container">
+                  <div class="spinning">&#8635;</div>
+                </div>
+              </template>
+
               <div slot="viewport" class="product-viewport"></div>
-              <div slot="loader" class="loading-spinner-container">
-                <div class="spinning">&#8635;</div>
-              </div>
               <button slot="previous-page">&lt;</button>
               <span slot="page-number"></span>
               <button slot="next-page">&gt;</button>
