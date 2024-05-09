@@ -93,7 +93,7 @@ a {
   box-sizing: border-box;
 }
 
-.product-browser {
+.product-viewer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

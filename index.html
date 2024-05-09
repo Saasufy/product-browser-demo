@@ -12,7 +12,7 @@
     <script src="https://saasufy.com/node_modules/saasufy-components/socket.js" type="module" defer></script>
     <script src="https://saasufy.com/node_modules/saasufy-components/app-router.js" type="module" defer></script>
     <script src="https://saasufy.com/node_modules/saasufy-components/model-text.js" type="module" defer></script>
-    <script src="https://saasufy.com/node_modules/saasufy-components/collection-browser.js" type="module" defer></script>
+    <script src="https://saasufy.com/node_modules/saasufy-components/collection-viewer.js" type="module" defer></script>
     <script src="https://saasufy.com/node_modules/saasufy-components/input-provider.js" type="module" defer></script>
   </head>
   <body>
@@ -28,7 +28,7 @@
 
       <socket-provider class="main-socket-container" url="wss://saasufy.com/sid8006/socketcluster/">
 
-        <collection-browser
+        <collection-viewer
           class="top-nav centered-row-container"
           collection-type="Category"
           collection-fields="name"
@@ -42,14 +42,14 @@
           <div slot="viewport"></div>
           <button slot="previous-page">&lt;</button>
           <button slot="next-page">&gt;</button>
-        </collection-browser>
+        </collection-viewer>
 
         <app-router class="product-container centered-column-container">
           <template slot="page" route-path="/:categoryName">
             <div class="category-title">Category: {{capitalize(categoryName)}}</div>
 
-            <collection-browser
-              class="product-browser"
+            <collection-viewer
+              class="product-viewer"
               collection-type="Product"
               collection-fields="name,brand,image"
               collection-view="categoryView"
@@ -73,7 +73,7 @@
               <button slot="previous-page">&lt;</button>
               <span slot="page-number"></span>
               <button slot="next-page">&gt;</button>
-            </collection-browser>
+            </collection-viewer>
 
           </template>
           <div slot="viewport" class="category-viewport"></div>
